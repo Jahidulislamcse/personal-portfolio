@@ -38,3 +38,6 @@ EXPOSE 80
 
 # Start Apache
 CMD ["apache2-foreground"]
+
+# Install Composer dependencies
+RUN composer install --no-dev --no-interaction --prefer-dist --optimize-autoloader
