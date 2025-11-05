@@ -11,4 +11,9 @@ class Setting extends Model
 
     protected $guarded = [];
 
+    public function skills()
+    {
+        return $this->hasMany(Skill::class);
+    }
+
 }

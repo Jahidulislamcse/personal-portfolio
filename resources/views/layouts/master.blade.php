@@ -8,6 +8,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet" />
     <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Poppins:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-pO6x0Q5Z0sXbdU8NdP8VcoE4cIVjFZpCjA7HeUQqjq95MZ0zZL+6k3q2v3K5xFj4/vK7t0ZYzZ5bK3KqXUnKvg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
 
     <style type="text/tailwindcss">

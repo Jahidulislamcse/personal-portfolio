@@ -3,7 +3,7 @@
 namespace App\Services;
 
 use App\Models\Setting;
-use App\Models\Slider;
+use App\Models\Skill;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\File;
 
@@ -28,6 +28,7 @@ class SettingService
             'twitter' => 'nullable|string',
             'facebook' => 'nullable|string',
             'linkedin' => 'nullable|string',
+            'skill_images.*' => 'nullable|image|max:5048',
         ];
 
         return $request->validate($rules);
@@ -47,4 +48,18 @@ class SettingService
         $settings->save();
     }
 
+
+    public function handleSkillImages(Request $request, Setting $settings): void
+    {
+        if (!$request->hasFile('skill_images')) return;
+
+        foreach ($request->file('skill_images') as $image) {
+            $fileName = time() . '_' . uniqid() . '.' . $image->getClientOriginalExtension();
+            $image->move(public_path('upload/skills'), $fileName);
+
+            $settings->skills()->create([
+                'image' => 'skills/' . $fileName,
+            ]);
+        }
+    }
 }

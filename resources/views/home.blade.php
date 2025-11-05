@@ -39,15 +39,14 @@
                     </form>
                 </div>
                 <div class="flex mt-10 items-center">
-                    <img src="{{ asset('backend/images/DP.jpg') }}"
-                        class="w-12 h-12 rounded-full border-4 border-rpWhite" />
-                    <img src="{{ asset('backend/images/DP.jpg') }}"
-                        class="w-12 h-12 rounded-full border-4 border-rpWhite -ml-3" />
-                    <img src="{{ asset('backend/images/DP.jpg') }}"
-                        class="w-12 h-12 rounded-full border-4 border-rpWhite -ml-3" />
-                    <img src="{{ asset('backend/images/DP.jpg') }}"
-                        class="w-12 h-12 rounded-full border-4 border-rpWhite -ml-3" />
-                    <span class="font-medium">+ thousand travellers have joined</span>
+                    @if(isset($settings->skills) && $settings->skills->count() > 0)
+                        @foreach($settings->skills as $index => $skill)
+                            <img src="{{ asset('upload/' . $skill->image) }}"
+                                class="w-12 h-12 rounded-full border-4 border-rpWhite {{ $index > 0 ? '-ml-2' : '' }}" />
+                        @endforeach
+                    @else
+                        <p class="text-gray-500 text-sm">No skills uploaded yet.</p>
+                    @endif
                 </div>
             </div>
             <div class="hidden sm:block sm:w-1/3 lg:w-3/5 relative">
@@ -177,6 +176,7 @@
         </div>
     </section>
 
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
 
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.css" />
     <script src="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.js"></script>
@@ -304,5 +304,6 @@
             color: #1193D4;
         }
     </style>
+    
 
 @endsection

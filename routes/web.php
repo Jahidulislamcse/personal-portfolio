@@ -27,8 +27,8 @@ Route::get('/contact', [ContactController::class, 'index'])->name('contact');
 Route::post('/contact', [ContactController::class, 'store'])->name('contact.store');
 
 Route::get('/all-branches', [BranchController::class, 'userBranches'])->name('branches.user');
-Route::get('/kk-products', [ProductController::class, 'userProductsByCategory'])->name('products.user');
-Route::get('/products/{slug}', [ProductController::class, 'show'])->name('products.show');
+Route::get('/projects', [ProductController::class, 'userProductsByCategory'])->name('products.user');
+Route::get('/project/{slug}', [ProductController::class, 'show'])->name('products.show');
 Route::get('/managing-body', [ManagingBodyController::class, 'frontendIndex'])->name('managing-body');
 Route::get('/kk-gallery', [GalleryController::class, 'showUserGallery'])->name('gallery.user');
 
@@ -47,6 +47,8 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
     Route::prefix('admin')->name('admin.')->middleware(['auth'])->group(function () {
         Route::get('settings', [SettingController::class, 'index'])->name('settings.index');
         Route::post('settings/update', [SettingController::class, 'update'])->name('settings.update');
+        Route::delete('skills/{id}/delete', [SettingController::class, 'skillDestroy'])->name('admin.skills.destroy');
+
 
         Route::prefix('branches')->name('branches.')->controller(BranchController::class)->group(function () {
             Route::get('/', 'index')->name('index');

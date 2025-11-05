@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Services\SettingService;
 use App\Models\Setting;
+use App\Models\Skill;
 
 class SettingController extends Controller
 {
@@ -52,8 +53,25 @@ class SettingController extends Controller
             $settings->update($data);
         }
 
+        $this->settingService->handleSkillImages($request, $settings);
+
         $this->settingService->handleLogoUpload($request, $settings);
 
         return redirect()->back()->with('success', 'Settings updated successfully.');
     }
+
+    public function skillDestroy($id)
+    {
+        $skill = Skill::findOrFail($id);
+
+        $path = public_path('upload/' . $skill->image);
+        if (file_exists($path)) {
+            unlink($path);
+        }
+
+        $skill->delete();
+
+        return response()->json(['success' => true]);
+    }
+
 }
