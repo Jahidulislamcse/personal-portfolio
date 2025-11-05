@@ -22,7 +22,7 @@
     </style>
 
     <title>@yield('title', 'Jahidul Islam')</title>
-    <link rel="icon" href="{{ asset('upload/favicon.ico') }}" type="image/x-icon" />
+    <link rel="icon" href="{{ asset('upload/favicon.png') }}" type="image/x-icon" />
 </head>
 <body class="bg-gray-50 text-gray-800">
     @include('layouts.header')
